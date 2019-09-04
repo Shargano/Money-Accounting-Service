@@ -1,0 +1,40 @@
+{
+  "name": "money-finance-service",
+  "version": "1.0.0",
+  "description": "Copyright (c) 2019 Lineate LLC   Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated   documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation   the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software,   and to permit persons to whom the Software is furnished to do so, subject to the following conditions:   The above copyright notice and this permission notice shall be included in all copies or substantial   portions of the Software.   THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED   TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL   THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION   OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS   IN THE SOFTWARE. File generator ==============",
+  "main": "webpack.common.js",
+  "dependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "css": "^2.2.4",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "img-loader": "^3.0.1",
+    "vue": "^2.6.10",
+    "vue-img-loader": "^1.0.0",
+    "vue-loader": "^15.7.1",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.1.2",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://SharganovVladimir@bitbucket.org/mgrakov/money-finance-service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/mgrakov/money-finance-service#readme"
+}

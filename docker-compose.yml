@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+    money_finance:
+        build: .
+        ports:
+            - '8888:8888/tcp'
+        image: money_finance
+        volumes:
+            - "money_finance_data:/var/lib/postgresql/9.3/main"
+
+volumes:
+  money_finance_data:
+    driver: local

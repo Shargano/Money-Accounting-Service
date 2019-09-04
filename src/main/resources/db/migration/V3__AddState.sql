@@ -1,0 +1,1 @@
+alter table wallet add "state" VARCHAR(10);

@@ -1,0 +1,49 @@
+#!groovy
+// Run docker build
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent any
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3', artifactNumToKeepStr: '3'))
+        timestamps()
+    }
+    stages {
+        stage("Gradle Build") {
+		steps {
+			echo " ============== Start build artifact =================="
+  	     	 	sh './gradlew clean bootJar -x test'
+		}
+	}
+
+        stage("Build docker image") {
+            steps {
+                echo " ============== Start build image =================="
+                sh 'docker build -t vsharganov/money:latest . '
+            }
+        }
+
+        stage("Push docker image") {
+            steps {
+                echo " ============== Push builded image =================="
+                dir('docker') {
+                    withCredentials([string(credentialsId: 'docker-pwd', variable: 'DockerPass')]) {
+                        sh "docker login -u vsharganov -p ${DockerPass}"
+                    }
+                    sh 'docker push vsharganov/money:latest'
+                }
+            }
+        }
+
+        stage("Run container on remote server") {
+            steps {
+		echo " ============== Run container on remote server =================="
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'vsharganov', 
+					  transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'docker-compose up', 
+					  execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+',
+					  remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'docker-compose.yml')], 
+					  usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+            }
+        }
+    }
+}
